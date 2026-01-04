@@ -1,0 +1,47 @@
+# GitHub Pages Configuration
+theme: jekyll-theme-cayman
+title: Full-Stack Developer Portfolio
+description: Production-ready web applications with modern technologies
+show_downloads: false
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Projects
+    url: /projects/matrix-teaching-quest.html
+  - title: Contact
+    url: /#contact
+
+# Social links (update with your information)
+github_username: yourusername
+linkedin_username: yourprofile
+email: your.email@example.com
+
+# Google Analytics (optional)
+# google_analytics: UA-XXXXXXXXX-X
+
+# SEO
+lang: en
+author: Your Name
+keywords: full-stack developer, python, react, fastapi, postgresql, web development, portfolio
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - venv
+  - .git
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false

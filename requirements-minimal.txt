@@ -1,0 +1,5 @@
+# Минимальные зависимости без PostgreSQL и компиляции
+fastapi==0.68.0
+uvicorn==0.15.0
+pydantic==1.8.2
+python-dotenv==0.19.0

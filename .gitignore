@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+
+# Media files (large)
+Music/
+Videos/
+*.mp3
+*.mp4
+*.wav
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Deployment scripts
+*.bat
+deploy/
+
+# Test coverage
+htmlcov/
+.coverage
+
+# Alembic
+alembic.ini
+
+# Portfolio materials
+portfolio_materials/
+portfolio_test_run.py
+
+# Documentation (keep only main README)
+ADMIN-*.md
+ARCHITECTURE-*.md
+CANDIDATE-*.md
+FINAL-*.md
+FIX-*.md
+INTERVIEW-*.md
+MEDIA-*.md
+QUICK-*.md
+RESUME-*.md
+Screencast-*.txt
+TECHNICAL-*.md
+VIDEO-*.md
+WEB-APP-*.md

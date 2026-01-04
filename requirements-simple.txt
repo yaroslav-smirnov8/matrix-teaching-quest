@@ -1,0 +1,14 @@
+# Simplified requirements for localhost development
+fastapi==0.104.1
+uvicorn==0.24.0
+sqlalchemy==2.0.23
+alembic==1.12.1
+pydantic==2.4.2
+python-multipart==0.0.6
+python-dotenv==1.0.0
+psycopg2-binary==2.9.9
+# Optional dependencies for full functionality
+# asyncpg==0.29.0
+# python-telegram-bot==20.7
+# redis==5.0.1
+# aioredis==2.0.1
