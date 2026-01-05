@@ -26,143 +26,137 @@ A full-stack interactive quest application that guides teachers through an immer
 
 ## Project Structure
 
-\\\
-matrix-teaching-quest/
-│
-├── backend/                          # FastAPI backend service
-│   ├── app/
-│   │   ├── api/                      # API route definitions
-│   │   │   ├── routes/               # Endpoint handlers
-│   │   │   ├── dependencies.py       # Dependency injection
-│   │   │   └── responses.py          # Response schemas
-│   │   │
-│   │   ├── core/                     # Core application configuration
-│   │   │   ├── config.py             # Environment configuration
-│   │   │   ├── security.py           # JWT/auth utilities
-│   │   │   └── constants.py          # Application constants
-│   │   │
-│   │   ├── db/                       # Database layer
-│   │   │   ├── database.py           # Connection management
-│   │   │   ├── session.py            # Session factory
-│   │   │   └── base.py               # Base model configuration
-│   │   │
-│   │   ├── models/                   # SQLAlchemy ORM models
-│   │   │   ├── user.py               # User/player model
-│   │   │   ├── scene.py              # Quest scene model
-│   │   │   ├── choice.py             # Player choice tracking
-│   │   │   ├── achievement.py        # Achievement model
-│   │   │   └── analytics_event.py    # Event tracking model
-│   │   │
-│   │   ├── schemas/                  # Pydantic request/response models
-│   │   │   ├── user_schema.py        # User schemas
-│   │   │   ├── scene_schema.py       # Scene schemas
-│   │   │   └── analytics_schema.py   # Analytics schemas
-│   │   │
-│   │   ├── services/                 # Business logic layer
-│   │   │   ├── user_service.py       # User management logic
-│   │   │   ├── quest_service.py      # Quest progression logic
-│   │   │   ├── achievement_service.py # Achievement tracking
-│   │   │   ├── analytics_service.py  # Analytics processing
-│   │   │   └── promo_service.py      # Promo code generation
-│   │   │
-│   │   └── main.py                   # FastAPI application entry point
-│   │
-│   ├── alembic/                      # Database migration scripts
-│   │   ├── versions/                 # Migration versions
-│   │   ├── env.py                    # Alembic environment configuration
-│   │   └── script.py.mako            # Migration template
-│   │
-│   ├── tests/                        # Backend test suite
-│   │   ├── test_api/                 # API endpoint tests
-│   │   ├── test_services/            # Service layer tests
-│   │   ├── conftest.py               # Pytest configuration/fixtures
-│   │   └── test_db.py                # Database tests
-│   │
-│   ├── requirements.txt              # Python dependencies
-│   └── .env.example                  # Environment variables template
-│
-├── src/                              # Frontend React application
-│   ├── components/                   # React components
-│   │   ├── scenes/                   # Quest scene components
-│   │   │   ├── OpeningScene.tsx      # Quest opening/introduction
-│   │   │   ├── MainQuestScene.tsx    # Primary quest narrative
-│   │   │   ├── ChoiceScene.tsx       # Decision point components
-│   │   │   ├── ResultScene.tsx       # Outcome display
-│   │   │   └── FinalScene.tsx        # Quest conclusion
-│   │   │
-│   │   ├── admin/                    # Admin dashboard components
-│   │   │   ├── Dashboard.tsx         # Main admin interface
-│   │   │   ├── Analytics.tsx         # Analytics visualization
-│   │   │   ├── FunnelAnalysis.tsx    # Funnel analysis component
-│   │   │   ├── UserManagement.tsx    # User admin controls
-│   │   │   └── PromoManagement.tsx   # Promo code management
-│   │   │
-│   │   ├── ui/                       # Reusable UI components
-│   │   │   ├── Button.tsx            # Button component
-│   │   │   ├── Card.tsx              # Card layout component
-│   │   │   ├── Modal.tsx             # Modal dialog component
-│   │   │   ├── Loading.tsx           # Loading spinner
-│   │   │   └── Toast.tsx             # Toast notifications
-│   │   │
-│   │   ├── effects/                  # Visual effect components
-│   │   │   ├── MatrixRain.tsx        # Falling matrix text effect
-│   │   │   ├── ParticleBackground.tsx # Particle system background
-│   │   │   ├── GlitchEffect.tsx      # Glitch visual effect
-│   │   │   └── NeonText.tsx          # Neon text styling
-│   │   │
-│   │   ├── video/                    # Video components
-│   │   │   ├── VideoPlayer.tsx       # Custom video player
-│   │   │   └── VideoContainer.tsx    # Video wrapper
-│   │   │
-│   │   └── audio/                    # Audio components
-│   │       └── AudioPlayer.tsx       # Audio playback controls
-│   │
-│   ├── contexts/                     # React Context providers
-│   │   ├── UserContext.tsx           # User state management
-│   │   ├── QuestContext.tsx          # Quest progression state
-│   │   ├── AnalyticsContext.tsx      # Analytics event tracking
-│   │   └── ThemeContext.tsx          # Theme/styling context
-│   │
-│   ├── hooks/                        # Custom React hooks
-│   │   ├── useQuest.ts               # Quest progression hook
-│   │   ├── useUser.ts                # User data hook
-│   │   ├── useAnalytics.ts           # Analytics tracking hook
-│   │   ├── useWindowSize.ts          # Window resize hook
-│   │   └── useTelegram.ts            # Telegram Mini App API hook
-│   │
-│   ├── utils/                        # Utility functions
-│   │   ├── api.ts                    # API client
-│   │   ├── telegram.ts               # Telegram integration utilities
-│   │   ├── tracking.ts               # Event tracking helpers
-│   │   ├── animations.ts             # Animation utilities
-│   │   └── storage.ts                # Local storage helpers
-│   │
-│   ├── styles/                       # Global styles
-│   │   ├── global.css                # Global stylesheet
-│   │   ├── variables.css             # CSS custom properties
-│   │   └── animations.css            # Animation definitions
-│   │
-│   ├── App.tsx                       # Root component
-│   ├── index.tsx                     # React entry point
-│   └── types.ts                      # TypeScript type definitions
-│
-├── public/                           # Static assets
-│   ├── index.html                    # HTML template
-│   ├── favicon.ico                   # Site icon
-│   └── assets/                       # Images, fonts, etc
-│
-├── docs/                             # Documentation
-│   ├── API.md                        # API documentation
-│   ├── ARCHITECTURE.md               # Architecture overview
-│   ├── DEPLOYMENT.md                 # Deployment guide
-│   └── assets/                       # Documentation assets
-│
-├── package.json                      # Frontend dependencies
-├── tsconfig.json                     # TypeScript configuration
-├── vite.config.ts                    # Vite build configuration
-├── README.md                         # This file
-└── .gitignore                        # Git ignore rules
-\\\
+### Backend Organization
+
+    backend/
+    ├── app/
+    │   ├── api/
+    │   │   ├── routes/              # Endpoint handlers
+    │   │   ├── dependencies.py      # Dependency injection
+    │   │   └── responses.py         # Response schemas
+    │   │
+    │   ├── core/
+    │   │   ├── config.py            # Environment configuration
+    │   │   ├── security.py          # JWT/auth utilities
+    │   │   └── constants.py         # Application constants
+    │   │
+    │   ├── db/
+    │   │   ├── database.py          # Connection management
+    │   │   ├── session.py           # Session factory
+    │   │   └── base.py              # Base model configuration
+    │   │
+    │   ├── models/
+    │   │   ├── user.py              # User/player model
+    │   │   ├── scene.py             # Quest scene model
+    │   │   ├── choice.py            # Player choice tracking
+    │   │   ├── achievement.py       # Achievement model
+    │   │   └── analytics_event.py   # Event tracking model
+    │   │
+    │   ├── schemas/
+    │   │   ├── user_schema.py       # User schemas
+    │   │   ├── scene_schema.py      # Scene schemas
+    │   │   └── analytics_schema.py  # Analytics schemas
+    │   │
+    │   ├── services/
+    │   │   ├── user_service.py      # User management logic
+    │   │   ├── quest_service.py     # Quest progression logic
+    │   │   ├── achievement_service.py # Achievement tracking
+    │   │   ├── analytics_service.py # Analytics processing
+    │   │   └── promo_service.py     # Promo code generation
+    │   │
+    │   └── main.py                  # FastAPI entry point
+    │
+    ├── alembic/                     # Database migrations
+    │   ├── versions/                # Migration versions
+    │   ├── env.py                   # Alembic configuration
+    │   └── script.py.mako           # Migration template
+    │
+    ├── tests/
+    │   ├── test_api/                # API endpoint tests
+    │   ├── test_services/           # Service layer tests
+    │   ├── conftest.py              # Pytest configuration
+    │   └── test_db.py               # Database tests
+    │
+    ├── requirements.txt
+    └── .env.example
+
+### Frontend Organization
+
+    src/
+    ├── components/
+    │   ├── scenes/
+    │   │   ├── OpeningScene.tsx     # Quest introduction
+    │   │   ├── MainQuestScene.tsx   # Primary narrative
+    │   │   ├── ChoiceScene.tsx      # Decision points
+    │   │   ├── ResultScene.tsx      # Outcome display
+    │   │   └── FinalScene.tsx       # Quest conclusion
+    │   │
+    │   ├── admin/
+    │   │   ├── Dashboard.tsx        # Main admin interface
+    │   │   ├── Analytics.tsx        # Analytics visualization
+    │   │   ├── FunnelAnalysis.tsx   # Funnel analysis
+    │   │   ├── UserManagement.tsx   # User admin controls
+    │   │   └── PromoManagement.tsx  # Promo code management
+    │   │
+    │   ├── ui/
+    │   │   ├── Button.tsx           # Button component
+    │   │   ├── Card.tsx             # Card layout
+    │   │   ├── Modal.tsx            # Modal dialog
+    │   │   ├── Loading.tsx          # Loading spinner
+    │   │   └── Toast.tsx            # Toast notifications
+    │   │
+    │   ├── effects/
+    │   │   ├── MatrixRain.tsx       # Falling matrix text
+    │   │   ├── ParticleBackground.tsx # Particle system
+    │   │   ├── GlitchEffect.tsx     # Glitch effect
+    │   │   └── NeonText.tsx         # Neon text styling
+    │   │
+    │   ├── video/
+    │   │   ├── VideoPlayer.tsx      # Custom video player
+    │   │   └── VideoContainer.tsx   # Video wrapper
+    │   │
+    │   └── audio/
+    │       └── AudioPlayer.tsx      # Audio playback
+    │
+    ├── contexts/
+    │   ├── UserContext.tsx          # User state management
+    │   ├── QuestContext.tsx         # Quest progression state
+    │   ├── AnalyticsContext.tsx     # Analytics tracking
+    │   └── ThemeContext.tsx         # Theme context
+    │
+    ├── hooks/
+    │   ├── useQuest.ts              # Quest progression hook
+    │   ├── useUser.ts               # User data hook
+    │   ├── useAnalytics.ts          # Analytics tracking hook
+    │   ├── useWindowSize.ts         # Window resize hook
+    │   └── useTelegram.ts           # Telegram Mini App hook
+    │
+    ├── utils/
+    │   ├── api.ts                   # API client
+    │   ├── telegram.ts              # Telegram integration
+    │   ├── tracking.ts              # Event tracking
+    │   ├── animations.ts            # Animation utilities
+    │   └── storage.ts               # Local storage helpers
+    │
+    ├── styles/
+    │   ├── global.css               # Global stylesheet
+    │   ├── variables.css            # CSS custom properties
+    │   └── animations.css           # Animation definitions
+    │
+    ├── App.tsx                      # Root component
+    ├── index.tsx                    # React entry point
+    └── types.ts                     # TypeScript types
+
+    public/
+    ├── index.html
+    ├── favicon.ico
+    └── assets/                      # Images, fonts, etc
+
+    docs/
+    ├── API.md                       # API documentation
+    ├── ARCHITECTURE.md              # Architecture overview
+    ├── DEPLOYMENT.md                # Deployment guide
+    └── assets/                      # Documentation assets
 
 ## Key Components
 
@@ -279,23 +273,23 @@ npm run build
 ## API Endpoints
 
 ### Quest Endpoints
-- GET /api/quest/current-scene - Get current scene
-- POST /api/quest/choose - Submit choice and progress
-- GET /api/quest/status - Get quest completion status
+- \GET /api/quest/current-scene\ - Get current scene
+- \POST /api/quest/choose\ - Submit choice and progress
+- \GET /api/quest/status\ - Get quest completion status
 
 ### Analytics Endpoints
-- GET /api/analytics/funnel - Funnel analysis data
-- GET /api/analytics/user-journey/{user_id} - User journey tracking
-- GET /api/analytics/metrics - Overall metrics
+- \GET /api/analytics/funnel\ - Funnel analysis data
+- \GET /api/analytics/user-journey/{user_id}\ - User journey tracking
+- \GET /api/analytics/metrics\ - Overall metrics
 
 ### Achievement Endpoints
-- GET /api/achievements - List all achievements
-- GET /api/achievements/user/{user_id} - User achievements
+- \GET /api/achievements\ - List all achievements
+- \GET /api/achievements/user/{user_id}\ - User achievements
 
 ### Admin Endpoints
-- GET /api/admin/users - List all users
-- POST /api/admin/promos - Generate promo code
-- DELETE /api/admin/promos/{code} - Deactivate promo
+- \GET /api/admin/users\ - List all users
+- \POST /api/admin/promos\ - Generate promo code
+- \DELETE /api/admin/promos/{code}\ - Deactivate promo
 
 ## Testing
 
